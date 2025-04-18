@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Todo-list",
-  description: "투두 리스트",
+  description: "할 일을 기록하는 투두 리스트입니다.",
 };
 
 export default function RootLayout({
