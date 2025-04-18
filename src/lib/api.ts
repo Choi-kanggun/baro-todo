@@ -22,3 +22,20 @@ export const addTodo = async (title: string) => {
     throw new Error("할 일을 추가하는데 실패하였습니다.");
   }
 };
+
+export const fetchTodos = async () => {
+  try {
+    const response = await fetch(API_URL, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("할 일 리스트를 가져오는데 실패하였습니다.");
+    }
+
+    const todos: Todo[] = await response.json();
+    return todos;
+  } catch (error) {
+    throw new Error("할 일 리스트를 가져오는데 실패하였습니다.");
+  }
+};
