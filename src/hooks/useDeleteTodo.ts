@@ -25,6 +25,7 @@ const useDeleteTodo = () => {
         queryClient.setQueryData(["todos"], context.prevTodos);
       }
     },
+
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
     },

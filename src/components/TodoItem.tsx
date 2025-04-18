@@ -20,21 +20,26 @@ const TodoItem = ({ todo }: TodoItemProps) => {
     deleteMutation.mutate(todo.id);
   };
   return (
-    <div className="flex">
-      <div>
+    <li className="flex justify-between items-center p-2 border rounded-md shadow-sm">
+      <div className="flex items-center gap-2">
         <input
           type="checkbox"
           checked={todo.completed}
           onChange={handleToggle}
+          className="w-4 h-4"
         />
         <span className={todo.completed ? "line-through text-gray-400" : ""}>
           {todo.title}
         </span>
       </div>
-      <button type="button" onClick={handleDelete}>
-        X
+      <button
+        type="button"
+        onClick={handleDelete}
+        className="text-sm hover:text-red-600"
+      >
+        삭제
       </button>
-    </div>
+    </li>
   );
 };
 

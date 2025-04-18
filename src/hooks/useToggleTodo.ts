@@ -7,6 +7,7 @@ const useToggleTodo = () => {
 
   const toggleMutation = useMutation({
     mutationFn: toggleTodo,
+
     onMutate: async ({ id, completed }) => {
       await queryClient.cancelQueries({ queryKey: ["todos"] });
 
@@ -19,9 +20,11 @@ const useToggleTodo = () => {
       );
       return { prevTodos };
     },
+
     onError: (_, __, context) => {
       queryClient.setQueryData(["todos"], context?.prevTodos);
     },
+
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
