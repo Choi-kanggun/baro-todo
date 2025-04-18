@@ -20,10 +20,11 @@ const useDeleteTodo = () => {
       return { prevTodos };
     },
 
-    onError: (_, __, context) => {
-      if (context?.prevTodos) {
+    onError: (error, __, context) => {
+      if (context) {
         queryClient.setQueryData(["todos"], context.prevTodos);
       }
+      throw error;
     },
 
     onSettled: () => {

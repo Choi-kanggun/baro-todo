@@ -21,8 +21,11 @@ const useToggleTodo = () => {
       return { prevTodos };
     },
 
-    onError: (_, __, context) => {
-      queryClient.setQueryData(["todos"], context?.prevTodos);
+    onError: (error, __, context) => {
+      if (context) {
+        queryClient.setQueryData(["todos"], context.prevTodos);
+      }
+      throw error;
     },
 
     onSettled: () => {
