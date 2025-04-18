@@ -8,7 +8,6 @@ const useDeleteTodo = () => {
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deleteTodo(id),
 
-    //낙관적 업데이트
     onMutate: async (id: string) => {
       await queryClient.cancelQueries({ queryKey: ["todos"] });
 

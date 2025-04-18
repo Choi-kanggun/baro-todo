@@ -8,7 +8,6 @@ const useAddTodo = () => {
   const createMutation = useMutation({
     mutationFn: (title: string) => addTodo(title),
 
-    //낙관적 업데이트
     onMutate: async (title: string) => {
       await queryClient.cancelQueries({ queryKey: ["todos"] });
 

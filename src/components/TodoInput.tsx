@@ -1,7 +1,7 @@
 "use client";
 
 import useAddTodo from "@/hooks/useAddTodo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TodoInput = () => {
   const [title, setTitle] = useState("");
@@ -18,6 +18,13 @@ const TodoInput = () => {
     createMutation.mutate(title);
     setTitle("");
   };
+
+  // 에러 처리
+  useEffect(() => {
+    if (createMutation.isError && createMutation.error) {
+      alert((createMutation.error as Error).message);
+    }
+  }, [createMutation.isError, createMutation.error]);
 
   return (
     <form onSubmit={handleAdd} className="w-full flex flex-col gap-2 mb-4">

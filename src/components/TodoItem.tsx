@@ -4,7 +4,7 @@ import useDeleteTodo from "@/hooks/useDeleteTodo";
 import useToggleTodo from "@/hooks/useToggleTodo";
 import useUpdateTodo from "@/hooks/useUpdateTodo";
 import { Todo } from "@/types/todo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TodoItemProps = {
   todo: Todo;
@@ -36,6 +36,25 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   const handleDelete = () => {
     deleteMutation.mutate(todo.id);
   };
+
+  // 에러 처리리
+  useEffect(() => {
+    if (toggleMutation.isError) {
+      alert((toggleMutation.error as Error).message);
+    } else if (deleteMutation.isError) {
+      alert((deleteMutation.error as Error).message);
+    } else if (updateMutation.isError) {
+      alert((updateMutation.error as Error).message);
+    }
+  }, [
+    toggleMutation.isError,
+    toggleMutation.error,
+    deleteMutation.isError,
+    deleteMutation.error,
+    updateMutation.isError,
+    updateMutation.error,
+  ]);
+
   return (
     <li className="flex justify-between items-center p-2 border rounded-md shadow-sm">
       {!isUpdate ? (
@@ -84,7 +103,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             onChange={(e) => setUpdateTitle(e.target.value)}
             className="flex-1"
           />
-          <button type="submit" className="text-sm hover:text-blue-600 mx-2">
+          <button type="submit" className="text-sm hover:text-blue-600">
             수정완료
           </button>
         </form>
