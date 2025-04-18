@@ -52,3 +52,27 @@ export const deleteTodo = async (id: string) => {
     throw new Error("할 일을 삭제하는데 실패하였습니다.");
   }
 };
+
+export const toggleTodo = async ({
+  id,
+  completed,
+}: {
+  id: string;
+  completed: boolean;
+}) => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ completed }),
+    });
+
+    if (!response.ok) {
+      throw new Error("할 일의 상태를 변경하는데 실패하였습니다.");
+    }
+  } catch (error) {
+    throw new Error("할 일의 상태를 변경하는데 실패하였습니다.");
+  }
+};
