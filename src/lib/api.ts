@@ -1,6 +1,6 @@
 import { Todo } from "@/types/todo";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+const API_URL = "https://talented-swamp-smash.glitch.me/todos";
 
 export const addTodo = async (title: string) => {
   try {

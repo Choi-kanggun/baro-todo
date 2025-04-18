@@ -14,9 +14,7 @@ const useToggleTodo = () => {
       const prevTodos = queryClient.getQueryData<Todo[]>(["todos"]);
 
       queryClient.setQueryData<Todo[]>(["todos"], (old = []) =>
-        old.map((todo) =>
-          todo.id === id ? { ...todo, completed: !completed } : todo
-        )
+        old.map((todo) => (todo.id === id ? { ...todo, completed } : todo))
       );
       return { prevTodos };
     },
