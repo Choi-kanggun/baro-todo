@@ -39,3 +39,16 @@ export const fetchTodos = async () => {
     throw new Error("할 일 리스트를 가져오는데 실패하였습니다.");
   }
 };
+
+export const deleteTodo = async (id: string) => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("할 일을 삭제하는데 실패하였습니다.");
+    }
+  } catch (error) {
+    throw new Error("할 일을 삭제하는데 실패하였습니다.");
+  }
+};
