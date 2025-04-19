@@ -27,21 +27,28 @@
  ┃ ┣ 📜layout.tsx
  ┃ ┗ 📜page.tsx
  ┣ 📂components
- ┃ ┣ 📜Loading.tsx
- ┃ ┣ 📜TodoClient.tsx
- ┃ ┣ 📜TodoFilterTabs.tsx
+ ┃ ┣ 📜TodoDelete.tsx
+ ┃ ┣ 📜TodoEdit.tsx
+ ┃ ┣ 📜TodoErrorMessage.tsx
  ┃ ┣ 📜TodoInput.tsx
  ┃ ┣ 📜TodoItem.tsx
  ┃ ┣ 📜TodoList.tsx
- ┃ ┗ 📜TodoStatus.tsx
- ┣ 📂fonts
- ┃ ┗ 📜PretendardVariable.woff2
+ ┃ ┗ 📜TodoToggle.tsx
+ ┣ 📂constants
+ ┃ ┣ 📜apiUrl.ts
+ ┃ ┗ 📜tabs.ts
  ┣ 📂hooks
- ┃ ┗ 📜useTodos.ts
+ ┃ ┣ 📜useAddTodo.ts
+ ┃ ┣ 📜useDeleteTodo.ts
+ ┃ ┣ 📜useFetchTodos.ts
+ ┃ ┣ 📜useToggleTodo.ts
+ ┃ ┗ 📜useUpdateTodo.ts
  ┣ 📂lib
  ┃ ┗ 📜api.ts
- ┣ 📂provides
- ┃ ┗ 📜TodoQueryProvider.tsx
+ ┣ 📂providers
+ ┃ ┗ 📜TQProvider.tsx
+ ┣ 📂store
+ ┃ ┗ 📜useErrorStore.ts
  ┗ 📂types
  ┃ ┗ 📜todo.ts
 ```
