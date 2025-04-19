@@ -1,15 +1,10 @@
 "use client";
 
 import TodoItem from "@/components/TodoItem";
+import { tabs } from "@/constants/tabs";
 import useFetchTodos from "@/hooks/useFetchTodos";
 import { Todo } from "@/types/todo";
 import { useState } from "react";
-
-const tabs = [
-  { id: "all", label: "전체" },
-  { id: "remain", label: "남은 일" },
-  { id: "complete", label: "완료" },
-];
 
 const TodoList = () => {
   const [currentTab, setCurrentTab] = useState("all");

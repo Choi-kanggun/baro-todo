@@ -1,6 +1,5 @@
+import { API_URL } from "@/constants/apiUrl";
 import { Todo } from "@/types/todo";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
 export const addTodo = async (title: string) => {
   try {
