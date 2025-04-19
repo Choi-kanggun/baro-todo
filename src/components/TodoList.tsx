@@ -5,15 +5,15 @@ import useFetchTodos from "@/hooks/useFetchTodos";
 import { Todo } from "@/types/todo";
 import { useState } from "react";
 
+const tabs = [
+  { id: "all", label: "전체" },
+  { id: "remain", label: "남은 일" },
+  { id: "complete", label: "완료" },
+];
+
 const TodoList = () => {
   const [currentTab, setCurrentTab] = useState("all");
   const { todos, isPending, isError } = useFetchTodos();
-
-  const tabs = [
-    { id: "all", label: "전체" },
-    { id: "remain", label: "남은 일" },
-    { id: "complete", label: "완료" },
-  ];
 
   const filteredTodos = todos.filter((todo: Todo) => {
     if (currentTab === "all") return true;

@@ -1,71 +1,28 @@
 "use client";
 
-import useDeleteTodo from "@/hooks/useDeleteTodo";
-import useToggleTodo from "@/hooks/useToggleTodo";
-import useUpdateTodo from "@/hooks/useUpdateTodo";
+import TodoDelete from "@/components/TodoDelete";
+import TodoEdit from "@/components/TodoEdit";
+import TodoToggle from "@/components/TodoToggle";
 import { Todo } from "@/types/todo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type TodoItemProps = {
   todo: Todo;
 };
 
 const TodoItem = ({ todo }: TodoItemProps) => {
-  const [updateTitle, setUpdateTitle] = useState(todo.title);
   const [isUpdate, setIsUpdate] = useState(false);
-  const deleteMutation = useDeleteTodo();
-  const toggleMutation = useToggleTodo();
-  const updateMutation = useUpdateTodo();
-
-  const handleToggle = () => {
-    toggleMutation.mutate({ id: todo.id, completed: !todo.completed });
-  };
 
   const handleUpdate = () => {
     setIsUpdate(true);
   };
-
-  const handleUpdateComplete = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (updateTitle.trim()) {
-      updateMutation.mutate({ id: todo.id, title: updateTitle.trim() });
-    }
-    setIsUpdate(false);
-  };
-
-  const handleDelete = () => {
-    deleteMutation.mutate(todo.id);
-  };
-
-  // 에러 처리리
-  useEffect(() => {
-    if (toggleMutation.isError) {
-      alert((toggleMutation.error as Error).message);
-    } else if (deleteMutation.isError) {
-      alert((deleteMutation.error as Error).message);
-    } else if (updateMutation.isError) {
-      alert((updateMutation.error as Error).message);
-    }
-  }, [
-    toggleMutation.isError,
-    toggleMutation.error,
-    deleteMutation.isError,
-    deleteMutation.error,
-    updateMutation.isError,
-    updateMutation.error,
-  ]);
 
   return (
     <li className="flex justify-between items-center p-2 border rounded-md shadow-sm">
       {!isUpdate ? (
         <>
           <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={handleToggle}
-              className="w-4 h-4"
-            />
+            <TodoToggle todo={todo} />
             <span
               className={`flex-grow min-w-0 ${
                 todo.completed ? "line-through text-gray-400" : ""
@@ -83,30 +40,11 @@ const TodoItem = ({ todo }: TodoItemProps) => {
               수정
             </button>
 
-            <button
-              type="button"
-              onClick={handleDelete}
-              className="text-sm hover:text-red-600"
-            >
-              삭제
-            </button>
+            <TodoDelete todo={todo} />
           </div>
         </>
       ) : (
-        <form
-          onSubmit={handleUpdateComplete}
-          className="w-full flex justify-between items-center"
-        >
-          <input
-            type="text"
-            value={updateTitle}
-            onChange={(e) => setUpdateTitle(e.target.value)}
-            className="flex-1"
-          />
-          <button type="submit" className="text-sm hover:text-blue-600">
-            수정완료
-          </button>
-        </form>
+        <TodoEdit todo={todo} setIsUpdate={setIsUpdate} />
       )}
     </li>
   );
