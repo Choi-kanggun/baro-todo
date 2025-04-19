@@ -2,7 +2,7 @@
 
 import useUpdateTodo from "@/hooks/useUpdateTodo";
 import { Todo } from "@/types/todo";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type TodoItemProps = {
   todo: Todo;
@@ -20,12 +20,6 @@ const TodoEdit = ({ todo, setIsUpdate }: TodoItemProps) => {
     }
     setIsUpdate(false);
   };
-
-  useEffect(() => {
-    if (updateMutation.isError) {
-      alert((updateMutation.error as Error).message);
-    }
-  }, [updateMutation.isError, updateMutation.error]);
 
   return (
     <form

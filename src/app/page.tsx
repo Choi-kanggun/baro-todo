@@ -1,3 +1,4 @@
+import TodoErrorMessage from "@/components/TodoErrorMessage";
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import { fetchTodos } from "@/lib/api";
@@ -18,6 +19,7 @@ const Home = async () => {
         <HydrationBoundary state={dehydrate(queryClient)}>
           <TodoInput />
           <TodoList />
+          <TodoErrorMessage />
         </HydrationBoundary>
       </div>
     </div>

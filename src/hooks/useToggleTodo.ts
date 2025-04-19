@@ -1,4 +1,5 @@
 import { toggleTodo } from "@/lib/api";
+import useErrorStore from "@/store/useErrorStore";
 import { Todo } from "@/types/todo";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -19,11 +20,14 @@ const useToggleTodo = () => {
       return { prevTodos };
     },
 
-    onError: (error, __, context) => {
+    onError: (_, __, context) => {
       if (context) {
         queryClient.setQueryData(["todos"], context.prevTodos);
       }
-      throw error;
+
+      useErrorStore
+        .getState()
+        .setError("상태 변경 중 에러가 발생하였습니다. 다시 시도해주세요.");
     },
 
     onSettled: () => {
