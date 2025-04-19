@@ -35,12 +35,12 @@ const TodoInput = () => {
             setTitle(e.target.value);
             if (error) setError("");
           }}
-          className="flex-grow min-w-0 px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+          className="flex-grow min-w-0 px-4 py-2 border border-gray-300 rounded-lg shadow-inner focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
           placeholder="할 일을 입력하세요"
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 font-bold text-white rounded-md hover:bg-blue-600 transition whitespace-nowrap"
+          className="px-5 py-2.5 rounded-lg bg-blue-500 font-semibold text-white rounded-md hover:bg-blue-600 transition whitespace-nowrap"
         >
           추가
         </button>

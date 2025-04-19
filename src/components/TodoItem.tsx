@@ -18,14 +18,14 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   };
 
   return (
-    <li className="flex justify-between items-center p-2 border rounded-md shadow-sm">
+    <li className="flex justify-between items-center p-3 border rounded-lg shadow-sm hover:bg-gray-50 transition">
       {!isUpdate ? (
         <>
           <div className="flex items-center gap-2">
             <TodoToggle todo={todo} />
             <span
               className={`flex-grow min-w-0 ${
-                todo.completed ? "line-through text-gray-400" : ""
+                todo.completed ? "line-through text-gray-400" : "text-gray-800"
               }`}
             >
               {todo.title}
@@ -35,7 +35,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             <button
               type="button"
               onClick={handleUpdate}
-              className="text-sm hover:text-blue-600 mx-2"
+              className="text-sm hover:text-blue-600 pr-1.5"
             >
               수정
             </button>

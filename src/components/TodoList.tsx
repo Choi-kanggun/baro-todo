@@ -18,7 +18,11 @@ const TodoList = () => {
   });
 
   if (isPending) {
-    return <p className="text-center">로딩 중 입니다...</p>;
+    return (
+      <p className="text-center text-gray-500 animate-pulse">
+        로딩 중 입니다...
+      </p>
+    );
   }
   if (isError) {
     return (
@@ -39,7 +43,7 @@ const TodoList = () => {
             className={`px-4 py-2 rounded-md border transition ${
               currentTab === tab.id
                 ? "bg-blue-500 border-blue-400 text-white font-semibold"
-                : "bg-white border-gray-300 hover:bg-blue-400 hover:font-semibold hover:text-white"
+                : "bg-white border-gray-300 text-gray-600 hover:bg-blue-400 hover:text-white transition"
             }`}
           >
             {tab.label}

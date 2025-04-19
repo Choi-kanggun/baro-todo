@@ -36,11 +36,13 @@ const TodoEdit = ({ todo, setIsUpdate }: TodoItemProps) => {
         type="text"
         value={updateTitle}
         onChange={(e) => setUpdateTitle(e.target.value)}
-        className="flex-1"
+        className="flex-grow min-w-0 px-1 py-2 border rounded-lg shadow-inner focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
       />
-      <button type="submit" className="text-sm hover:text-blue-600">
-        수정완료
-      </button>
+      <div className=" whitespace-nowrap">
+        <button type="submit" className="pl-3 text-sm hover:text-blue-600">
+          수정완료
+        </button>
+      </div>
     </form>
   );
 };

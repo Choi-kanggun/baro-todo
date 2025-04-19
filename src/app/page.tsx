@@ -13,7 +13,7 @@ const Home = async () => {
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8">
-      <div className="max-w-xl mx-auto bg-white rounded-lg p-6 shadow-lg">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl p-6 shadow-xl border">
         <h1 className="text-3xl text-center font-bold mb-8">Todo List</h1>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <TodoInput />
