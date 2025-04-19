@@ -15,7 +15,6 @@ const TodoToggle = ({ todo }: Props) => {
     toggleMutation.mutate({ id: todo.id, completed: !todo.completed });
   };
 
-  // 에러 처리
   useEffect(() => {
     if (toggleMutation.isError) {
       alert((toggleMutation.error as Error).message);

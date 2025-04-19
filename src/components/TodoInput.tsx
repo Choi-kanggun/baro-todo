@@ -19,7 +19,6 @@ const TodoInput = () => {
     setTitle("");
   };
 
-  // 에러 처리
   useEffect(() => {
     if (createMutation.isError && createMutation.error) {
       alert((createMutation.error as Error).message);
